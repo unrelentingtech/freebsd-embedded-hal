@@ -1,0 +1,17 @@
+[package]
+authors = ["Greg V <greg@unrelenting.technology>"]
+categories = ["embedded", "hardware-support"]
+description = "Implementation of the `embedded-hal` traits for FreeBSD devices"
+keywords = ["FreeBSD", "hal"]
+license = "Unlicense"
+name = "freebsd-embedded-hal"
+repository = "https://github.com/unrelentingtech/freebsd-embedded-hal"
+version = "0.1.0"
+edition = "2018"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-freebsd"]
+
+[dependencies]
+embedded-hal = "=1.0.0-alpha.6"
+libc = "0"
