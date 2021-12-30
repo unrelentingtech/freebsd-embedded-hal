@@ -5,7 +5,7 @@
 
 Implementation of [`embedded-hal`] traits for FreeBSD devices:
 
-- `gpio`: using [libgpio], with stateful and toggleable support, with support for true initial output values if the device is capable, with cool type-state tracking, with open-drain outputs
+- `gpio`: using [`libgpio`], with stateful and toggleable support, with support for true initial output values if the device is capable, with cool type-state tracking, with open-drain outputs
 
 [`libgpio`]: https://www.freebsd.org/cgi/man.cgi?query=gpio&sektion=3
 [`embedded-hal`]: https://docs.rs/embedded-hal
