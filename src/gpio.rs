@@ -47,6 +47,12 @@ impl AsRawFd for GpioChip {
     }
 }
 
+impl Drop for GpioChip {
+    fn drop(&mut self) {
+        unsafe { gpio_close(self.0) };
+    }
+}
+
 impl GpioChip {
     pub fn from_unit(unit: u32) -> io::Result<GpioChip> {
         let res = unsafe { gpio_open(unit as _) };
@@ -295,4 +301,5 @@ extern "C" {
     fn gpio_pin_set(handle: libc::c_int, pin: u32, val: libc::c_int) -> libc::c_int;
     fn gpio_pin_config(handle: libc::c_int, pcfg: *mut gpio_config_t) -> libc::c_int;
     fn gpio_pin_set_flags(handle: libc::c_int, pcfg: *mut gpio_config_t) -> libc::c_int;
+    fn gpio_close(unit: libc::c_int);
 }
