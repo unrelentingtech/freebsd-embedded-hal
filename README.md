@@ -7,6 +7,9 @@ Implementation of [`embedded-hal`] traits for FreeBSD devices:
 
 - `gpio`: using [`libgpio`], with stateful and toggleable support, with support for true initial output values if the device is capable, with cool type-state tracking, with open-drain outputs
 - `i2c`: using [`iic`], with transaction support (not using iterators on-the-fly because many drivers have to reinterpret start/stop flags between neighboring messages for hardware start-stop)
+- TODO: `spi`
+- TODO: `pwm`
+- TODO: `serial`? :D
 
 [`libgpio`]: https://www.freebsd.org/cgi/man.cgi?query=gpio&sektion=3
 [`iic`]: https://www.freebsd.org/cgi/man.cgi?query=iic&sektion=4
