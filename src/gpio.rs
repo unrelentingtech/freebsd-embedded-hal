@@ -6,10 +6,11 @@ use std::{
     ffi::{CStr, CString},
     io,
     marker::PhantomData,
+    os::unix::io::{AsRawFd, FromRawFd, IntoRawFd, RawFd},
     ptr,
 };
 
-pub struct GpioChip(libc::c_int);
+pub struct GpioChip(RawFd);
 pub struct GpioPins<'c> {
     chip: &'c GpioChip,
     base: *mut gpio_config_t,
@@ -28,9 +29,21 @@ pub struct GpioPin<'c, M> {
     caps: u32,
 }
 
-impl std::os::unix::io::FromRawFd for GpioChip {
-    unsafe fn from_raw_fd(fd: std::os::unix::io::RawFd) -> Self {
-        GpioChip(fd.into())
+impl FromRawFd for GpioChip {
+    unsafe fn from_raw_fd(fd: RawFd) -> Self {
+        GpioChip(fd)
+    }
+}
+
+impl IntoRawFd for GpioChip {
+    fn into_raw_fd(self) -> RawFd {
+        self.0
+    }
+}
+
+impl AsRawFd for GpioChip {
+    fn as_raw_fd(&self) -> RawFd {
+        self.0
     }
 }
 
